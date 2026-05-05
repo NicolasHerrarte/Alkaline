@@ -4,7 +4,7 @@
 #include "utils/hash.h"
 #include "utils/allocator.h"
 
-#define MAX_DIMS 4
+#define MAX_DIMS 256
 #define STORAGE_NAME_CAPACITY 10
 
 #define LOCAL_ARENA_SIZE 1024

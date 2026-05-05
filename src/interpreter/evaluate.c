@@ -434,7 +434,6 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                         EvalPass expr_p = evaluate(manager, expr_node, current_arena);
 
                         EvalPass expr_original = unpack_access_to_var(manager, expr_p);
-
                         type_modify(type_storage, expr_original.as_variable.vtype);
                         assert(type_equals(*type_storage, expr_original.as_variable.vtype));
 
@@ -727,8 +726,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
                     EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
 
-                    printf("SUM:\n");
-                    print_eval_pass(left_expr);
+                    //printf("SUM:\n");
+                    //print_eval_pass(left_expr);
 
                     action = eval_arithmetic(left_expr, right_expr, '+');
                     
@@ -1072,7 +1071,10 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     else if(inner.as_vart.kind == KIND_ARRAY){
                         arr_type.array.elem_type = inner.as_vart.array.elem_type;
                         arr_type.array.ndims = inner.as_vart.array.ndims + 1;
-                        arr_type.array.sizes[arr_type.array.ndims] = 0;
+                        for(int i = 0;i<arr_type.array.ndims;i++){
+                            arr_type.array.sizes[i] = 0;
+                        }
+                        
                     }
                     else {
                         assert(false);
