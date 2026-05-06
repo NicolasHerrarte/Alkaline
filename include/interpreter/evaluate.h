@@ -21,8 +21,8 @@ EvalPass eval_comparison(EvalPass left, EvalPass right, int op);
 EvalPass eval_arithmetic(EvalPass left, EvalPass right, char op);
 VValue var_deep_copy(VValue val, Type type, Arena* dest_arena);
 Variable unpack_pointer(Variable variable);
-EvalPass unpack_access_to_var(SymbolsManager* manager, EvalPass packed_expr);
-EvalPass pack_var_to_access(SymbolsManager* manager, Arena* current_arena, EvalPass unpacked_expr);
+EvalPass refactor_access_to_var(SymbolsManager* manager, EvalPass packed_expr);
+EvalPass refactor_var_to_access(SymbolsManager* manager, Arena* current_arena, EvalPass unpacked_expr);
 EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena);
 
 void print_execute(void* manager_void, ...);

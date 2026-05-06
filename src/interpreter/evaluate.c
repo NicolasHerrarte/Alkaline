@@ -213,7 +213,7 @@ Variable unpack_pointer(Variable variable){
     
     VValue* ptr_storage = (VValue*) variable.storage.value_ptr;
     switch (ptr_type.primitive_tag) {
-        case VAR_TYPE_INT:    val = (VValue){ .vv_tag = VV_INT,    .value_int    = ptr_storage->value_int}; break;
+        case VAR_TYPE_INT:    val = (VValue){ .vv_tag = VV_INT,    .value_int    = ptr_storage->value_int    }; break;
         case VAR_TYPE_FLOAT:  val = (VValue){ .vv_tag = VV_FLOAT,  .value_float  = ptr_storage->value_float  }; break;
         case VAR_TYPE_BOOL:   val = (VValue){ .vv_tag = VV_BOOL,   .value_bool   = ptr_storage->value_bool   }; break;
         case VAR_TYPE_STRING: val = (VValue){ .vv_tag = VV_STRING, .value_string = ptr_storage->value_string }; break;
@@ -223,7 +223,7 @@ Variable unpack_pointer(Variable variable){
     return (Variable) {.vtype = ptr_type, .storage = val};
 }
 
-EvalPass unpack_access_to_var(SymbolsManager* manager, EvalPass packed_expr){
+EvalPass refactor_access_to_var(SymbolsManager* manager, EvalPass packed_expr){
     if(packed_expr.tag == VARIABLE_TYPE){
         return packed_expr;
     }
@@ -253,7 +253,7 @@ EvalPass unpack_access_to_var(SymbolsManager* manager, EvalPass packed_expr){
     }
 }
 
-EvalPass pack_var_to_access(SymbolsManager* manager, Arena* current_arena, EvalPass unpacked_expr){
+EvalPass refactor_var_to_access(SymbolsManager* manager, Arena* current_arena, EvalPass unpacked_expr){
     if(unpacked_expr.tag == VARIABLE_TYPE){
         VValue* soft_storage = getSoftStorage(manager, current_arena);
 
@@ -433,7 +433,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                         ASTNode* expr_node = identifier_node->sibling;
                         EvalPass expr_p = evaluate(manager, expr_node, current_arena);
 
-                        EvalPass expr_original = unpack_access_to_var(manager, expr_p);
+                        EvalPass expr_original = refactor_access_to_var(manager, expr_p);
                         type_modify(type_storage, expr_original.as_variable.vtype);
                         assert(type_equals(*type_storage, expr_original.as_variable.vtype));
 
@@ -452,7 +452,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
 
                     EvalPass access = evaluate(manager, access_node, current_arena);
                     EvalPass expr_p = evaluate(manager, expr_node, current_arena);
-                    EvalPass expr_original = unpack_access_to_var(manager, expr_p);
+                    EvalPass expr_original = refactor_access_to_var(manager, expr_p);
 
                     assert(access.tag == ACCESS_TYPE);
                     
@@ -632,7 +632,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     ASTNode* body_node = cond_node->sibling;
 
                     EvalPass cond_p = evaluate(manager, cond_node, current_arena);
-                    EvalPass cond = unpack_access_to_var(manager, cond_p);
+                    EvalPass cond = refactor_access_to_var(manager, cond_p);
                     //assert(cond.tag == VARIABLE_TYPE);
                     assert(cond.as_variable.vtype.primitive_tag == VAR_TYPE_BOOL);
 
@@ -662,7 +662,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     initializeScope(manager, DYNADICT_DEFAULT_CAPACITY);
                     while (true) {
                         EvalPass cond_p = evaluate(manager, cond_node, current_arena);
-                        EvalPass cond = unpack_access_to_var(manager, cond_p);
+                        EvalPass cond = refactor_access_to_var(manager, cond_p);
                         //assert(cond.tag == VARIABLE_TYPE);
                         assert(cond.as_variable.vtype.primitive_tag == VAR_TYPE_BOOL);
 
@@ -693,7 +693,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     evaluate(manager, init_node, current_arena);
                     while (true) {
                         EvalPass cond_p = evaluate(manager, cond_node, current_arena);
-                        EvalPass cond = unpack_access_to_var(manager, cond_p);
+                        EvalPass cond = refactor_access_to_var(manager, cond_p);
                         //assert(cond.tag == VARIABLE_TYPE);
                         assert(cond.as_variable.vtype.primitive_tag == VAR_TYPE_BOOL);
 
@@ -726,8 +726,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass left_expr_p = evaluate(manager, left_expr_node, current_arena);
                     EvalPass right_expr_p = evaluate(manager, right_expr_node, current_arena);
 
-                    EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
-                    EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
+                    EvalPass left_expr = refactor_access_to_var(manager, left_expr_p);
+                    EvalPass right_expr = refactor_access_to_var(manager, right_expr_p);
 
                     //printf("SUM:\n");
                     //print_eval_pass(left_expr);
@@ -744,8 +744,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass left_expr_p = evaluate(manager, left_expr_node, current_arena);
                     EvalPass right_expr_p = evaluate(manager, right_expr_node, current_arena);
 
-                    EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
-                    EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
+                    EvalPass left_expr = refactor_access_to_var(manager, left_expr_p);
+                    EvalPass right_expr = refactor_access_to_var(manager, right_expr_p);
 
                     action = eval_arithmetic(left_expr, right_expr, '-');
                     break;
@@ -758,8 +758,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass left_expr_p = evaluate(manager, left_expr_node, current_arena);
                     EvalPass right_expr_p = evaluate(manager, right_expr_node, current_arena);
 
-                    EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
-                    EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
+                    EvalPass left_expr = refactor_access_to_var(manager, left_expr_p);
+                    EvalPass right_expr = refactor_access_to_var(manager, right_expr_p);
 
                     action = eval_arithmetic(left_expr, right_expr, '*');
                     break;
@@ -773,8 +773,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass left_expr_p = evaluate(manager, left_expr_node, current_arena);
                     EvalPass right_expr_p = evaluate(manager, right_expr_node, current_arena);
 
-                    EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
-                    EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
+                    EvalPass left_expr = refactor_access_to_var(manager, left_expr_p);
+                    EvalPass right_expr = refactor_access_to_var(manager, right_expr_p);
 
                     action = eval_arithmetic(left_expr, right_expr, '/');
                     break;
@@ -786,8 +786,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass left_expr_p = evaluate(manager, left_expr_node, current_arena);
                     EvalPass right_expr_p = evaluate(manager, right_expr_node, current_arena);
 
-                    EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
-                    EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
+                    EvalPass left_expr = refactor_access_to_var(manager, left_expr_p);
+                    EvalPass right_expr = refactor_access_to_var(manager, right_expr_p);
 
                     //assert(right_expr.tag == VARIABLE_TYPE);
                     assert(left_expr.as_variable.vtype.primitive_tag == VAR_TYPE_BOOL);
@@ -807,8 +807,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass left_expr_p = evaluate(manager, left_expr_node, current_arena);
                     EvalPass right_expr_p = evaluate(manager, right_expr_node, current_arena);
 
-                    EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
-                    EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
+                    EvalPass left_expr = refactor_access_to_var(manager, left_expr_p);
+                    EvalPass right_expr = refactor_access_to_var(manager, right_expr_p);
 
                     //assert(left_expr.tag == VARIABLE_TYPE);
                     //assert(right_expr.tag == VARIABLE_TYPE);
@@ -833,8 +833,8 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     EvalPass logical_operator = evaluate(manager, logical_operator_node, current_arena);
                     EvalPass right_expr_p = evaluate(manager, right_expr_node, current_arena);
 
-                    EvalPass left_expr = unpack_access_to_var(manager, left_expr_p);
-                    EvalPass right_expr = unpack_access_to_var(manager, right_expr_p);
+                    EvalPass left_expr = refactor_access_to_var(manager, left_expr_p);
+                    EvalPass right_expr = refactor_access_to_var(manager, right_expr_p);
 
                     assert(logical_operator.as_value.vv_tag == VV_INT);
                     action = eval_comparison(left_expr, right_expr, logical_operator.as_value.value_int);
@@ -935,7 +935,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
 
                     EvalPass access = evaluate(manager, access_node, current_arena);
                     EvalPass expr_p = evaluate(manager, expr_node, current_arena);
-                    EvalPass expr = unpack_access_to_var(manager, expr_p);
+                    EvalPass expr = refactor_access_to_var(manager, expr_p);
 
                     //assert(expr.tag == VARIABLE_TYPE);
                     assert(expr.as_variable.vtype.primitive_tag == VAR_TYPE_INT);
@@ -992,7 +992,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                         arr_access.as_variable.vtype = pointer_type;
                         arr_access.as_variable.storage = (VValue){ .vv_tag = VV_PTR, .value_ptr = elem_ptr };
 
-                        action = pack_var_to_access(manager, current_arena, arr_access);
+                        action = refactor_var_to_access(manager, current_arena, arr_access);
                     } else if (curr_type.array.ndims > 1) {
                         Type reduced;
                         reduced.kind = KIND_ARRAY;
@@ -1006,7 +1006,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                         arr_access.as_variable.vtype = reduced;
                         arr_access.as_variable.storage = (VValue){ .vv_tag = VV_PTR, .value_ptr = elem_ptr };
 
-                        action = pack_var_to_access(manager, current_arena, arr_access);
+                        action = refactor_var_to_access(manager, current_arena, arr_access);
                     } else {
                         assert(false);
                     }
@@ -1108,7 +1108,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
 
                     for(int i = 0;i<children_count;i++){
                         EvalPass expr_p = evaluate(manager, curr_expr, current_arena);
-                        EvalPass expr = unpack_access_to_var(manager, expr_p);
+                        EvalPass expr = refactor_access_to_var(manager, expr_p);
                         //assert(expr.tag == VARIABLE_TYPE);
 
                         Argument sarg;
@@ -1190,7 +1190,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     if (get_children_count(*node) > 0) {
                         ASTNode* expr_node = node->storage.node->left_child;
                         EvalPass expr_p = evaluate(manager, expr_node, current_arena);
-                        EvalPass expr = unpack_access_to_var(manager, expr_p);
+                        EvalPass expr = refactor_access_to_var(manager, expr_p);
 
                         //assert(expr.tag == VARIABLE_TYPE);
                         action.as_signal.variable = expr.as_variable;
