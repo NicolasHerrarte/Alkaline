@@ -129,4 +129,9 @@ int main(){
 
     printf("TREE DONE\n");
     fflush(stdout);
+
+    // TO DO
+    // TRY ARRAY AS ARGS
+    // MODIFY LISTRING TO ACCEPT . and spaces
+    // MAKETHE BUILTINS IN THE MAIN C FILE
 }

@@ -1,734 +1,248 @@
 Iteration: 0, State: 0 Word: init
 [ | 2 LABEL(Trash) End 0 |]
 Shift -> 17
-Iteration: 1, State: 17 Word: int
+Iteration: 1, State: 17 Word: string
 [ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 |]
-Shift -> 66
-Iteration: 2, State: 66 Word: a
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 2 LABEL(int) int 66 |]
-Handle: Primitiveint 
-Reduce -> 33
-Iteration: 3, State: 72 Word: a
+Shift -> 69
+Iteration: 2, State: 69 Word: input
+[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 2 LABEL(string) string 69 |]
+Handle: Primitivestring 
+Reduce -> 36
+Iteration: 3, State: 72 Word: input
 [ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 1 Primitive 72 |]
 Handle: VarTypePrimitive 
 Reduce -> 31
-Iteration: 4, State: 71 Word: a
+Iteration: 4, State: 71 Word: input
 [ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 |]
 Shift -> 147
-Iteration: 5, State: 147 Word: <-
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 2 LABEL(a) name 147 |]
+Iteration: 5, State: 147 Word: ;
+[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 2 LABEL(input) name 147 |]
 Handle: Identifiername 
 Reduce -> 76
-Iteration: 6, State: 149 Word: <-
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 |]
-Shift -> 197
-Iteration: 7, State: 197 Word: 5
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 |]
-Shift -> 6
-Iteration: 8, State: 6 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 2 LABEL(5) integer 6 |]
-Handle: Factorinteger 
-Reduce -> 64
-Iteration: 9, State: 4 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 1 INT(5) Factor 4 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 10, State: 3 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 1 INT(5) Term 3 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 11, State: 2 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 1 INT(5) Eval 2 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 12, State: 36 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 1 INT(5) Relation 36 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 13, State: 37 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 1 INT(5) LogAnd 37 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 14, State: 237 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 1 INT(5) Expr 237 |]
-Handle: InstantiationExpr 
-Reduce -> 24
-Iteration: 15, State: 239 Word: ;
-[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(a) Identifier 149 | 2 LABEL(<-) <- 197 | 1 INT(5) Instantiation 239 |]
-Handle: Declarationinit VarType Identifier <- Instantiation 
-Reduce -> 23
-Iteration: 16, State: 31 Word: ;
+Iteration: 6, State: 149 Word: ;
+[ | 2 LABEL(Trash) End 0 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(input) Identifier 149 |]
+Handle: Declarationinit VarType Identifier 
+Reduce -> 22
+Iteration: 7, State: 31 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(4) Declaration 31 |]
 Handle: StatDeclaration 
 Reduce -> 12
-Iteration: 17, State: 26 Word: ;
+Iteration: 8, State: 26 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(4) Stat 26 |]
 Shift -> 82
-Iteration: 18, State: 82 Word: init
+Iteration: 9, State: 82 Word: input
 [ | 2 LABEL(Trash) End 0 | 0 NODE(4) Stat 26 | 2 LABEL(;) ; 82 |]
 Handle: UnitStatStat ; 
 Reduce -> 6
-Iteration: 19, State: 24 Word: init
+Iteration: 10, State: 24 Word: input
 [ | 2 LABEL(Trash) End 0 | 0 NODE(4) UnitStat 24 |]
 Handle: CompStatUnitStat 
 Reduce -> 4
-Iteration: 20, State: 23 Word: init
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 |]
-Shift -> 17
-Iteration: 21, State: 17 Word: float
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(init) init 17 |]
-Shift -> 68
-Iteration: 22, State: 68 Word: b
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(init) init 17 | 2 LABEL(float) float 68 |]
-Handle: Primitivefloat 
-Reduce -> 35
-Iteration: 23, State: 72 Word: b
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(init) init 17 | 1 Primitive 72 |]
-Handle: VarTypePrimitive 
-Reduce -> 31
-Iteration: 24, State: 71 Word: b
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 |]
-Shift -> 147
-Iteration: 25, State: 147 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 2 LABEL(b) name 147 |]
-Handle: Identifiername 
-Reduce -> 76
-Iteration: 26, State: 149 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(init) init 17 | 0 NODE(9) VarType 71 | 1 ID(b) Identifier 149 |]
-Handle: Declarationinit VarType Identifier 
-Reduce -> 22
-Iteration: 27, State: 31 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(4) Declaration 31 |]
-Handle: StatDeclaration 
-Reduce -> 12
-Iteration: 28, State: 26 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(4) Stat 26 |]
-Shift -> 82
-Iteration: 29, State: 82 Word: b
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(4) Stat 26 | 2 LABEL(;) ; 82 |]
-Handle: UnitStatStat ; 
-Reduce -> 6
-Iteration: 30, State: 81 Word: b
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(4) UnitStat 81 |]
-Handle: CompStatCompStat UnitStat 
-Reduce -> 5
-Iteration: 31, State: 23 Word: b
+Iteration: 11, State: 23 Word: input
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 |]
 Shift -> 8
-Iteration: 32, State: 8 Word: =
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(b) name 8 |]
+Iteration: 12, State: 8 Word: =
+[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(input) name 8 |]
 Handle: Identifiername 
 Reduce -> 76
-Iteration: 33, State: 35 Word: =
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 1 ID(b) Identifier 35 |]
+Iteration: 13, State: 35 Word: =
+[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 1 ID(input) Identifier 35 |]
 Handle: AccessBaseIdentifier 
 Reduce -> 74
-Iteration: 34, State: 13 Word: =
+Iteration: 14, State: 13 Word: =
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) AccessBase 13 |]
 Handle: AccessAccessBase 
 Reduce -> 73
-Iteration: 35, State: 12 Word: =
+Iteration: 15, State: 12 Word: =
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 |]
 Shift -> 62
-Iteration: 36, State: 62 Word: tofloat
+Iteration: 16, State: 62 Word: read
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 |]
 Shift -> 77
-Iteration: 37, State: 77 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 2 LABEL(tofloat) name 77 |]
+Iteration: 17, State: 77 Word: (
+[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 2 LABEL(read) name 77 |]
 Handle: Identifiername 
 Reduce -> 76
-Iteration: 38, State: 80 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 1 ID(tofloat) Identifier 80 |]
+Iteration: 18, State: 80 Word: (
+[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 1 ID(read) Identifier 80 |]
 Handle: AccessBaseIdentifier 
 Reduce -> 74
-Iteration: 39, State: 79 Word: (
+Iteration: 19, State: 79 Word: (
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) AccessBase 79 |]
 Handle: AccessAccessBase 
 Reduce -> 73
-Iteration: 40, State: 78 Word: (
+Iteration: 20, State: 78 Word: (
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 |]
 Shift -> 152
-Iteration: 41, State: 152 Word: a
+Iteration: 21, State: 152 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 |]
-Shift -> 115
-Iteration: 42, State: 115 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 2 LABEL(a) name 115 |]
-Handle: Identifiername 
-Reduce -> 76
-Iteration: 43, State: 123 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 1 ID(a) Identifier 123 |]
-Handle: AccessBaseIdentifier 
-Reduce -> 74
-Iteration: 44, State: 120 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) AccessBase 120 |]
-Handle: AccessAccessBase 
-Reduce -> 73
-Iteration: 45, State: 119 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) Access 119 |]
-Handle: FactorAccess 
-Reduce -> 63
-Iteration: 46, State: 111 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) Factor 111 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 47, State: 110 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) Term 110 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 48, State: 109 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) Eval 109 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 49, State: 124 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) Relation 124 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 50, State: 125 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) LogAnd 125 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 51, State: 108 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(27) Expr 108 |]
-Handle: ArgListExpr 
-Reduce -> 45
-Iteration: 52, State: 122 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(14) ArgList 122 |]
-Handle: ArgsArgList 
-Reduce -> 42
-Iteration: 53, State: 204 Word: )
+Handle: ArgsEpsilon 
+Reduce -> 43
+Iteration: 22, State: 204 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(14) Args 204 |]
 Shift -> 244
-Iteration: 54, State: 244 Word: ;
+Iteration: 23, State: 244 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(27) Access 78 | 2 LABEL(() ( 152 | 0 NODE(14) Args 204 | 2 LABEL()) ) 244 |]
 Handle: AccessAccess ( Args ) 
 Reduce -> 71
-Iteration: 55, State: 78 Word: ;
+Iteration: 24, State: 78 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(25) Access 78 |]
 Handle: FactorAccess 
 Reduce -> 63
-Iteration: 56, State: 4 Word: ;
+Iteration: 25, State: 4 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(25) Factor 4 |]
 Handle: TermFactor 
 Reduce -> 62
-Iteration: 57, State: 3 Word: ;
+Iteration: 26, State: 3 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(25) Term 3 |]
 Handle: EvalTerm 
 Reduce -> 59
-Iteration: 58, State: 2 Word: ;
+Iteration: 27, State: 2 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(25) Eval 2 |]
 Handle: RelationEval 
 Reduce -> 56
-Iteration: 59, State: 36 Word: ;
+Iteration: 28, State: 36 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(25) Relation 36 |]
 Handle: LogAndRelation 
 Reduce -> 54
-Iteration: 60, State: 37 Word: ;
+Iteration: 29, State: 37 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(25) LogAnd 37 |]
 Handle: ExprLogAnd 
 Reduce -> 52
-Iteration: 61, State: 143 Word: ;
+Iteration: 30, State: 143 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(=) = 62 | 0 NODE(25) Expr 143 |]
 Handle: AssignmentAccess = Expr 
 Reduce -> 30
-Iteration: 62, State: 33 Word: ;
+Iteration: 31, State: 33 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(8) Assignment 33 |]
 Handle: StatAssignment 
 Reduce -> 13
-Iteration: 63, State: 26 Word: ;
+Iteration: 32, State: 26 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(8) Stat 26 |]
 Shift -> 82
-Iteration: 64, State: 82 Word: print
+Iteration: 33, State: 82 Word: print
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(8) Stat 26 | 2 LABEL(;) ; 82 |]
 Handle: UnitStatStat ; 
 Reduce -> 6
-Iteration: 65, State: 81 Word: print
+Iteration: 34, State: 81 Word: print
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(8) UnitStat 81 |]
 Handle: CompStatCompStat UnitStat 
 Reduce -> 5
-Iteration: 66, State: 23 Word: print
+Iteration: 35, State: 23 Word: print
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 |]
 Shift -> 8
-Iteration: 67, State: 8 Word: (
+Iteration: 36, State: 8 Word: (
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(print) name 8 |]
 Handle: Identifiername 
 Reduce -> 76
-Iteration: 68, State: 35 Word: (
+Iteration: 37, State: 35 Word: (
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 1 ID(print) Identifier 35 |]
 Handle: AccessBaseIdentifier 
 Reduce -> 74
-Iteration: 69, State: 13 Word: (
+Iteration: 38, State: 13 Word: (
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) AccessBase 13 |]
 Handle: AccessAccessBase 
 Reduce -> 73
-Iteration: 70, State: 12 Word: (
+Iteration: 39, State: 12 Word: (
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 |]
 Shift -> 59
-Iteration: 71, State: 59 Word: b
+Iteration: 40, State: 59 Word: input
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 |]
 Shift -> 115
-Iteration: 72, State: 115 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 2 LABEL(b) name 115 |]
+Iteration: 41, State: 115 Word: )
+[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 2 LABEL(input) name 115 |]
 Handle: Identifiername 
 Reduce -> 76
-Iteration: 73, State: 123 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 1 ID(b) Identifier 123 |]
+Iteration: 42, State: 123 Word: )
+[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 1 ID(input) Identifier 123 |]
 Handle: AccessBaseIdentifier 
 Reduce -> 74
-Iteration: 74, State: 120 Word: )
+Iteration: 43, State: 120 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) AccessBase 120 |]
 Handle: AccessAccessBase 
 Reduce -> 73
-Iteration: 75, State: 119 Word: )
+Iteration: 44, State: 119 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 |]
 Handle: FactorAccess 
 Reduce -> 63
-Iteration: 76, State: 111 Word: )
+Iteration: 45, State: 111 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Factor 111 |]
 Handle: TermFactor 
 Reduce -> 62
-Iteration: 77, State: 110 Word: )
+Iteration: 46, State: 110 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Term 110 |]
 Handle: EvalTerm 
 Reduce -> 59
-Iteration: 78, State: 109 Word: )
+Iteration: 47, State: 109 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Eval 109 |]
 Handle: RelationEval 
 Reduce -> 56
-Iteration: 79, State: 124 Word: )
+Iteration: 48, State: 124 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Relation 124 |]
 Handle: LogAndRelation 
 Reduce -> 54
-Iteration: 80, State: 125 Word: )
+Iteration: 49, State: 125 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) LogAnd 125 |]
 Handle: ExprLogAnd 
 Reduce -> 52
-Iteration: 81, State: 108 Word: )
+Iteration: 50, State: 108 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Expr 108 |]
 Handle: ArgListExpr 
 Reduce -> 45
-Iteration: 82, State: 122 Word: )
+Iteration: 51, State: 122 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) ArgList 122 |]
 Handle: ArgsArgList 
 Reduce -> 42
-Iteration: 83, State: 121 Word: )
+Iteration: 52, State: 121 Word: )
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) Args 121 |]
 Shift -> 177
-Iteration: 84, State: 177 Word: ;
+Iteration: 53, State: 177 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) Args 121 | 2 LABEL()) ) 177 |]
 Handle: AccessAccess ( Args ) 
 Reduce -> 71
-Iteration: 85, State: 12 Word: ;
+Iteration: 54, State: 12 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Access 12 |]
 Handle: FactorAccess 
 Reduce -> 63
-Iteration: 86, State: 4 Word: ;
+Iteration: 55, State: 4 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Factor 4 |]
 Handle: TermFactor 
 Reduce -> 62
-Iteration: 87, State: 3 Word: ;
+Iteration: 56, State: 3 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Term 3 |]
 Handle: EvalTerm 
 Reduce -> 59
-Iteration: 88, State: 2 Word: ;
+Iteration: 57, State: 2 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Eval 2 |]
 Handle: RelationEval 
 Reduce -> 56
-Iteration: 89, State: 36 Word: ;
+Iteration: 58, State: 36 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Relation 36 |]
 Handle: LogAndRelation 
 Reduce -> 54
-Iteration: 90, State: 37 Word: ;
+Iteration: 59, State: 37 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) LogAnd 37 |]
 Handle: ExprLogAnd 
 Reduce -> 52
-Iteration: 91, State: 1 Word: ;
+Iteration: 60, State: 1 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Expr 1 |]
 Handle: StatExpr 
 Reduce -> 14
-Iteration: 92, State: 26 Word: ;
+Iteration: 61, State: 26 Word: ;
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Stat 26 |]
 Shift -> 82
-Iteration: 93, State: 82 Word: print
+Iteration: 62, State: 82 Word: EOF
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Stat 26 | 2 LABEL(;) ; 82 |]
 Handle: UnitStatStat ; 
 Reduce -> 6
-Iteration: 94, State: 81 Word: print
+Iteration: 63, State: 81 Word: EOF
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) UnitStat 81 |]
 Handle: CompStatCompStat UnitStat 
 Reduce -> 5
-Iteration: 95, State: 23 Word: print
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 |]
-Shift -> 8
-Iteration: 96, State: 8 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(print) name 8 |]
-Handle: Identifiername 
-Reduce -> 76
-Iteration: 97, State: 35 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 1 ID(print) Identifier 35 |]
-Handle: AccessBaseIdentifier 
-Reduce -> 74
-Iteration: 98, State: 13 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) AccessBase 13 |]
-Handle: AccessAccessBase 
-Reduce -> 73
-Iteration: 99, State: 12 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 |]
-Shift -> 59
-Iteration: 100, State: 59 Word: tofloat
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 |]
-Shift -> 115
-Iteration: 101, State: 115 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 2 LABEL(tofloat) name 115 |]
-Handle: Identifiername 
-Reduce -> 76
-Iteration: 102, State: 123 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 1 ID(tofloat) Identifier 123 |]
-Handle: AccessBaseIdentifier 
-Reduce -> 74
-Iteration: 103, State: 120 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) AccessBase 120 |]
-Handle: AccessAccessBase 
-Reduce -> 73
-Iteration: 104, State: 119 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 |]
-Shift -> 174
-Iteration: 105, State: 174 Word: false
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 |]
-Shift -> 118
-Iteration: 106, State: 118 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 2 LABEL(false) false 118 |]
-Handle: Factorfalse 
-Reduce -> 68
-Iteration: 107, State: 111 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(0) Factor 111 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 108, State: 110 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(0) Term 110 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 109, State: 109 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(0) Eval 109 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 110, State: 124 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(0) Relation 124 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 111, State: 125 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(0) LogAnd 125 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 112, State: 108 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(0) Expr 108 |]
-Handle: ArgListExpr 
-Reduce -> 45
-Iteration: 113, State: 122 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) ArgList 122 |]
-Handle: ArgsArgList 
-Reduce -> 42
-Iteration: 114, State: 215 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) Args 215 |]
-Shift -> 246
-Iteration: 115, State: 246 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) Args 215 | 2 LABEL()) ) 246 |]
-Handle: AccessAccess ( Args ) 
-Reduce -> 71
-Iteration: 116, State: 119 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Access 119 |]
-Handle: FactorAccess 
-Reduce -> 63
-Iteration: 117, State: 111 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Factor 111 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 118, State: 110 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Term 110 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 119, State: 109 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Eval 109 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 120, State: 124 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Relation 124 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 121, State: 125 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) LogAnd 125 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 122, State: 108 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Expr 108 |]
-Handle: ArgListExpr 
-Reduce -> 45
-Iteration: 123, State: 122 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) ArgList 122 |]
-Handle: ArgsArgList 
-Reduce -> 42
-Iteration: 124, State: 121 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) Args 121 |]
-Shift -> 177
-Iteration: 125, State: 177 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) Args 121 | 2 LABEL()) ) 177 |]
-Handle: AccessAccess ( Args ) 
-Reduce -> 71
-Iteration: 126, State: 12 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Access 12 |]
-Handle: FactorAccess 
-Reduce -> 63
-Iteration: 127, State: 4 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Factor 4 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 128, State: 3 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Term 3 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 129, State: 2 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Eval 2 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 130, State: 36 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Relation 36 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 131, State: 37 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) LogAnd 37 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 132, State: 1 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Expr 1 |]
-Handle: StatExpr 
-Reduce -> 14
-Iteration: 133, State: 26 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Stat 26 |]
-Shift -> 82
-Iteration: 134, State: 82 Word: print
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Stat 26 | 2 LABEL(;) ; 82 |]
-Handle: UnitStatStat ; 
-Reduce -> 6
-Iteration: 135, State: 81 Word: print
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) UnitStat 81 |]
-Handle: CompStatCompStat UnitStat 
-Reduce -> 5
-Iteration: 136, State: 23 Word: print
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 |]
-Shift -> 8
-Iteration: 137, State: 8 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 2 LABEL(print) name 8 |]
-Handle: Identifiername 
-Reduce -> 76
-Iteration: 138, State: 35 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 1 ID(print) Identifier 35 |]
-Handle: AccessBaseIdentifier 
-Reduce -> 74
-Iteration: 139, State: 13 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) AccessBase 13 |]
-Handle: AccessAccessBase 
-Reduce -> 73
-Iteration: 140, State: 12 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 |]
-Shift -> 59
-Iteration: 141, State: 59 Word: toint
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 |]
-Shift -> 115
-Iteration: 142, State: 115 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 2 LABEL(toint) name 115 |]
-Handle: Identifiername 
-Reduce -> 76
-Iteration: 143, State: 123 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 1 ID(toint) Identifier 123 |]
-Handle: AccessBaseIdentifier 
-Reduce -> 74
-Iteration: 144, State: 120 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) AccessBase 120 |]
-Handle: AccessAccessBase 
-Reduce -> 73
-Iteration: 145, State: 119 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 |]
-Shift -> 174
-Iteration: 146, State: 174 Word: tofloat
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 |]
-Shift -> 115
-Iteration: 147, State: 115 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 2 LABEL(tofloat) name 115 |]
-Handle: Identifiername 
-Reduce -> 76
-Iteration: 148, State: 123 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 ID(tofloat) Identifier 123 |]
-Handle: AccessBaseIdentifier 
-Reduce -> 74
-Iteration: 149, State: 120 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) AccessBase 120 |]
-Handle: AccessAccessBase 
-Reduce -> 73
-Iteration: 150, State: 119 Word: (
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 |]
-Shift -> 174
-Iteration: 151, State: 174 Word: true
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 |]
-Shift -> 117
-Iteration: 152, State: 117 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 2 LABEL(true) true 117 |]
-Handle: Factortrue 
-Reduce -> 67
-Iteration: 153, State: 111 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(1) Factor 111 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 154, State: 110 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(1) Term 110 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 155, State: 109 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(1) Eval 109 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 156, State: 124 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(1) Relation 124 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 157, State: 125 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(1) LogAnd 125 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 158, State: 108 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 1 BOOL(1) Expr 108 |]
-Handle: ArgListExpr 
-Reduce -> 45
-Iteration: 159, State: 122 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) ArgList 122 |]
-Handle: ArgsArgList 
-Reduce -> 42
-Iteration: 160, State: 215 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) Args 215 |]
-Shift -> 246
-Iteration: 161, State: 246 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) Args 215 | 2 LABEL()) ) 246 |]
-Handle: AccessAccess ( Args ) 
-Reduce -> 71
-Iteration: 162, State: 119 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(25) Access 119 |]
-Handle: FactorAccess 
-Reduce -> 63
-Iteration: 163, State: 111 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(25) Factor 111 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 164, State: 110 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(25) Term 110 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 165, State: 109 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(25) Eval 109 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 166, State: 124 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(25) Relation 124 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 167, State: 125 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(25) LogAnd 125 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 168, State: 108 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(25) Expr 108 |]
-Handle: ArgListExpr 
-Reduce -> 45
-Iteration: 169, State: 122 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) ArgList 122 |]
-Handle: ArgsArgList 
-Reduce -> 42
-Iteration: 170, State: 215 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) Args 215 |]
-Shift -> 246
-Iteration: 171, State: 246 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(27) Access 119 | 2 LABEL(() ( 174 | 0 NODE(14) Args 215 | 2 LABEL()) ) 246 |]
-Handle: AccessAccess ( Args ) 
-Reduce -> 71
-Iteration: 172, State: 119 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Access 119 |]
-Handle: FactorAccess 
-Reduce -> 63
-Iteration: 173, State: 111 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Factor 111 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 174, State: 110 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Term 110 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 175, State: 109 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Eval 109 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 176, State: 124 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Relation 124 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 177, State: 125 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) LogAnd 125 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 178, State: 108 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(25) Expr 108 |]
-Handle: ArgListExpr 
-Reduce -> 45
-Iteration: 179, State: 122 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) ArgList 122 |]
-Handle: ArgsArgList 
-Reduce -> 42
-Iteration: 180, State: 121 Word: )
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) Args 121 |]
-Shift -> 177
-Iteration: 181, State: 177 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(27) Access 12 | 2 LABEL(() ( 59 | 0 NODE(14) Args 121 | 2 LABEL()) ) 177 |]
-Handle: AccessAccess ( Args ) 
-Reduce -> 71
-Iteration: 182, State: 12 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Access 12 |]
-Handle: FactorAccess 
-Reduce -> 63
-Iteration: 183, State: 4 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Factor 4 |]
-Handle: TermFactor 
-Reduce -> 62
-Iteration: 184, State: 3 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Term 3 |]
-Handle: EvalTerm 
-Reduce -> 59
-Iteration: 185, State: 2 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Eval 2 |]
-Handle: RelationEval 
-Reduce -> 56
-Iteration: 186, State: 36 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Relation 36 |]
-Handle: LogAndRelation 
-Reduce -> 54
-Iteration: 187, State: 37 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) LogAnd 37 |]
-Handle: ExprLogAnd 
-Reduce -> 52
-Iteration: 188, State: 1 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Expr 1 |]
-Handle: StatExpr 
-Reduce -> 14
-Iteration: 189, State: 26 Word: ;
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Stat 26 |]
-Shift -> 82
-Iteration: 190, State: 82 Word: EOF
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) Stat 26 | 2 LABEL(;) ; 82 |]
-Handle: UnitStatStat ; 
-Reduce -> 6
-Iteration: 191, State: 81 Word: EOF
-[ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 | 0 NODE(25) UnitStat 81 |]
-Handle: CompStatCompStat UnitStat 
-Reduce -> 5
-Iteration: 192, State: 23 Word: EOF
+Iteration: 64, State: 23 Word: EOF
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) CompStat 23 |]
 Handle: ProgramCompStat 
 Reduce -> 2
-Iteration: 193, State: 22 Word: EOF
+Iteration: 65, State: 22 Word: EOF
 [ | 2 LABEL(Trash) End 0 | 0 NODE(0) Program 22 |]
 Accept

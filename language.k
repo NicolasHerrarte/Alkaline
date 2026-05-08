@@ -1,10 +1,8 @@
-init int a <- 5;
-init float b;
+init string input;
 
-b = tofloat(a);
-print(b);
-print(tofloat(false));
-print(toint(tofloat(true)));
+input = read();
+print(input);
+
 
 
 

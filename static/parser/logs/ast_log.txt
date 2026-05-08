@@ -1,47 +1,18 @@
 [NODE] Type: StatList
  ├── [NODE] Type: VarDecl
  │   ├── [NODE] Type: PrimitiveType
- │   │   └── [TYPE] 0
- │   ├── [ID] a
- │   └── [INT] 5
- ├── [NODE] Type: VarDecl
- │   ├── [NODE] Type: PrimitiveType
- │   │   └── [TYPE] 2
- │   └── [ID] b
+ │   │   └── [TYPE] 3
+ │   └── [ID] input
  ├── [NODE] Type: VarAssign
  │   ├── [NODE] Type: Access
- │   │   └── [ID] b
+ │   │   └── [ID] input
  │   └── [NODE] Type: FuncCall
  │       ├── [NODE] Type: Access
- │       │   └── [ID] tofloat
+ │       │   └── [ID] read
  │       └── [NODE] Type: Arguments
- │           └── [NODE] Type: Access
- │               └── [ID] a
- ├── [NODE] Type: FuncCall
- │   ├── [NODE] Type: Access
- │   │   └── [ID] print
- │   └── [NODE] Type: Arguments
- │       └── [NODE] Type: Access
- │           └── [ID] b
- ├── [NODE] Type: FuncCall
- │   ├── [NODE] Type: Access
- │   │   └── [ID] print
- │   └── [NODE] Type: Arguments
- │       └── [NODE] Type: FuncCall
- │           ├── [NODE] Type: Access
- │           │   └── [ID] tofloat
- │           └── [NODE] Type: Arguments
- │               └── [BOOL] 0
  └── [NODE] Type: FuncCall
      ├── [NODE] Type: Access
      │   └── [ID] print
      └── [NODE] Type: Arguments
-         └── [NODE] Type: FuncCall
-             ├── [NODE] Type: Access
-             │   └── [ID] toint
-             └── [NODE] Type: Arguments
-                 └── [NODE] Type: FuncCall
-                     ├── [NODE] Type: Access
-                     │   └── [ID] tofloat
-                     └── [NODE] Type: Arguments
-                         └── [BOOL] 1
+         └── [NODE] Type: Access
+             └── [ID] input
