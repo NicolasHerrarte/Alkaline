@@ -35,6 +35,7 @@ enum NodeClass{
     SUBTRACT,
     MULT,
     DIVISION,
+    INVERSE,
     ARRACCESS,
     FUNCCALL,
     PROPERTYACCESS,

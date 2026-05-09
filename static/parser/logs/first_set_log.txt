@@ -1,21 +1,21 @@
 
 --- FIRST SETS ---
-FIRST(Goal) = { (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
-FIRST(Expr) = { (, integer, floating, name, litstring, true, false }
-FIRST(Eval) = { (, integer, floating, name, litstring, true, false }
-FIRST(Term) = { (, integer, floating, name, litstring, true, false }
+FIRST(Goal) = { -, (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
+FIRST(Expr) = { -, (, integer, floating, name, litstring, true, false }
+FIRST(Eval) = { -, (, integer, floating, name, litstring, true, false }
+FIRST(Term) = { -, (, integer, floating, name, litstring, true, false }
 FIRST(Factor) = { (, integer, floating, name, litstring, true, false }
 FIRST(Access) = { (, name }
 FIRST(AccessBase) = { (, name }
 FIRST(RelOp) = { =?, >=, <=, >, < }
-FIRST(Args) = { ε, (, integer, floating, name, litstring, true, false }
-FIRST(ArgList) = { (, integer, floating, name, litstring, true, false }
-FIRST(Program) = { (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
+FIRST(Args) = { ε, -, (, integer, floating, name, litstring, true, false }
+FIRST(ArgList) = { -, (, integer, floating, name, litstring, true, false }
+FIRST(Program) = { -, (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
 FIRST(Block) = { { }
-FIRST(CompStat) = { (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
-FIRST(UnitStat) = { (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
+FIRST(CompStat) = { -, (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
+FIRST(UnitStat) = { -, (, integer, floating, name, litstring, true, false, if, while, for, init, proc, return, break, continue }
 FIRST(ControlStat) = { if, while, for, proc }
-FIRST(Stat) = { (, integer, floating, name, litstring, true, false, init }
+FIRST(Stat) = { -, (, integer, floating, name, litstring, true, false, init }
 FIRST(CondStat) = { if }
 FIRST(LoopStat) = { while, for }
 FIRST(While) = { while }
@@ -31,9 +31,10 @@ FIRST(ParamsList) = { name }
 FIRST(SingleParam) = { name }
 FIRST(Identifier) = { name }
 FIRST(ArrSize) = { integer }
-FIRST(Instantiation) = { (, integer, floating, name, litstring, true, false, assign }
+FIRST(Instantiation) = { -, (, integer, floating, name, litstring, true, false, assign }
 FIRST(ArrInst) = { int, bool, float, string, void }
 FIRST(StorageAssign) = { assign }
-FIRST(Relation) = { (, integer, floating, name, litstring, true, false }
-FIRST(LogAnd) = { (, integer, floating, name, litstring, true, false }
+FIRST(Relation) = { -, (, integer, floating, name, litstring, true, false }
+FIRST(LogAnd) = { -, (, integer, floating, name, litstring, true, false }
+FIRST(Negative) = { -, (, integer, floating, name, litstring, true, false }
 ------------------

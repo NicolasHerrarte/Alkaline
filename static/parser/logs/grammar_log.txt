@@ -2,7 +2,7 @@ Goal: Goal
 Terminals
  [End, Epsilon, +, -, *, /, (, ), integer, floating, name, [, ], ., ,, =?, >=, <=, >, <, ||, &&, litstring, true, false, if, else, while, for, init, proc, return, {, }, ;, <-, =, :, ->, int, bool, float, string, void, break, continue, assign, ]
 Non Terminals
- [Goal, Expr, Eval, Term, Factor, Access, AccessBase, RelOp, Args, ArgList, Program, Block, CompStat, UnitStat, ControlStat, Stat, CondStat, LoopStat, While, For, Declaration, ProcDeclaration, Assignment, VarType, Primitive, Jump, Params, ParamsList, SingleParam, Identifier, ArrSize, Instantiation, ArrInst, StorageAssign, Relation, LogAnd, ]
+ [Goal, Expr, Eval, Term, Factor, Access, AccessBase, RelOp, Args, ArgList, Program, Block, CompStat, UnitStat, ControlStat, Stat, CondStat, LoopStat, While, For, Declaration, ProcDeclaration, Assignment, VarType, Primitive, Jump, Params, ParamsList, SingleParam, Identifier, ArrSize, Instantiation, ArrInst, StorageAssign, Relation, LogAnd, Negative, ]
 Production Rules
   0 | [ Goal -> Program ]
     | SHIFT($0)
@@ -122,47 +122,51 @@ Production Rules
     | MAKE(Class 21, Children: $0, $2)
  58 | [ Eval -> Term ]
     | SHIFT($0)
- 59 | [ Term -> Term * Factor ]
+ 59 | [ Term -> Term * Negative ]
     | MAKE(Class 22, Children: $0, $2)
- 60 | [ Term -> Term / Factor ]
+ 60 | [ Term -> Term / Negative ]
     | MAKE(Class 23, Children: $0, $2)
- 61 | [ Term -> Factor ]
+ 61 | [ Term -> Negative ]
     | SHIFT($0)
- 62 | [ Factor -> Access ]
+ 62 | [ Negative -> - Factor ]
+    | MAKE(Class 24, Children: $1)
+ 63 | [ Negative -> Factor ]
     | SHIFT($0)
- 63 | [ Factor -> integer ]
+ 64 | [ Factor -> Access ]
+    | SHIFT($0)
+ 65 | [ Factor -> integer ]
     | BOX(ID 0)
- 64 | [ Factor -> floating ]
+ 66 | [ Factor -> floating ]
     | BOX(ID 1)
- 65 | [ Factor -> litstring ]
+ 67 | [ Factor -> litstring ]
     | BOX(ID 2)
- 66 | [ Factor -> true ]
+ 68 | [ Factor -> true ]
     | BOX(ID 3)
- 67 | [ Factor -> false ]
+ 69 | [ Factor -> false ]
     | BOX(ID 4)
- 68 | [ ArrSize -> integer ]
+ 70 | [ ArrSize -> integer ]
     | BOX(ID 0)
- 69 | [ Access -> Access [ Expr ] ]
-    | MAKE(Class 24, Children: $0, $2)
- 70 | [ Access -> Access ( Args ) ]
+ 71 | [ Access -> Access [ Expr ] ]
     | MAKE(Class 25, Children: $0, $2)
- 71 | [ Access -> Access . Identifier ]
+ 72 | [ Access -> Access ( Args ) ]
     | MAKE(Class 26, Children: $0, $2)
- 72 | [ Access -> AccessBase ]
+ 73 | [ Access -> Access . Identifier ]
+    | MAKE(Class 27, Children: $0, $2)
+ 74 | [ Access -> AccessBase ]
     | SHIFT($0)
- 73 | [ AccessBase -> Identifier ]
-    | MAKE(Class 27, Children: $0)
- 74 | [ AccessBase -> ( Expr ) ]
+ 75 | [ AccessBase -> Identifier ]
+    | MAKE(Class 28, Children: $0)
+ 76 | [ AccessBase -> ( Expr ) ]
     | SHIFT($1)
- 75 | [ Identifier -> name ]
+ 77 | [ Identifier -> name ]
     | BOX(ID 5)
- 76 | [ RelOp -> =? ]
+ 78 | [ RelOp -> =? ]
     | VALUE(0)
- 77 | [ RelOp -> >= ]
+ 79 | [ RelOp -> >= ]
     | VALUE(1)
- 78 | [ RelOp -> <= ]
+ 80 | [ RelOp -> <= ]
     | VALUE(2)
- 79 | [ RelOp -> > ]
+ 81 | [ RelOp -> > ]
     | VALUE(3)
- 80 | [ RelOp -> < ]
+ 82 | [ RelOp -> < ]
     | VALUE(4)

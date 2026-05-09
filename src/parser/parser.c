@@ -1415,10 +1415,10 @@ TableMapping tables_pipeline(Grammar G, Pair* mapping, int symbols_amount, char*
 TreeManager parse_pipeline(char* language_src, char* language_regex, char* rules_src, char* rules_regex, int* ignore_cats_language, int* ignore_cats_rules, Pair* mapping, int symbols_amount, char* lexer_dir, char* parser_dir, bool generate_parsing_tables, bool generate_lexing_tables, bool debug){
 
     char lexer_rules_table_dir[PATH_MAX];
-    snprintf(lexer_rules_table_dir, sizeof(lexer_rules_table_dir), "%s/tables/rules_transitions.sc", lexer_dir);
+    snprintf(lexer_rules_table_dir, sizeof(lexer_rules_table_dir), "%s/tables/rules_transitions.txt", lexer_dir);
 
     char lexer_language_table_dir[PATH_MAX];
-    snprintf(lexer_language_table_dir, sizeof(lexer_language_table_dir), "%s/tables/language_transitions.sc", lexer_dir);
+    snprintf(lexer_language_table_dir, sizeof(lexer_language_table_dir), "%s/tables/language_transitions.txt", lexer_dir);
 
     char parser_goto_action_table_dir[PATH_MAX];
     snprintf(parser_goto_action_table_dir, sizeof(parser_goto_action_table_dir), "%s/tables/goto_action.txt", parser_dir);

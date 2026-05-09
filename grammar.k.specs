@@ -86,9 +86,12 @@ Eval            /-> Eval + Term                                 /%%/ @mn -$0 -$2
 /|              /-> Eval - Term                                 /%%/ @mn -$0 -$2 <Subtract> /;
 /|              /-> Term                                        /%%/ @sh -$0 /;
 
-Term            /-> Term * Factor                               /%%/ @mn -$0 -$2 <Mult> /;
-/|              /-> Term / Factor                               /%%/ @mn -$0 -$2 <Division> /;
-/|              /-> Factor                                      /%%/ @sh -$0 /;
+Term            /-> Term * Negative                             /%%/ @mn -$0 -$2 <Mult> /;
+/|              /-> Term / Negative                             /%%/ @mn -$0 -$2 <Division> /;
+/|              /-> Negative                                    /%%/ @sh -$0 /;
+
+Negative	    /-> - Factor					                /%%/ @mn -$1 <Inverse> /;
+/|		        /-> Factor					                    /%%/ @sh -$0 /;
 
 Factor          /-> Access                                      /%%/ @sh -$0 /;
 /|              /-> integer                                     /%%/ @bx [0] /;

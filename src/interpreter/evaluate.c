@@ -5,88 +5,6 @@
 #include <stdarg.h>
 #include "interpreter/evaluate.h"
 
-#define INT_MACRO_TYPE (Type){.kind = KIND_PRIMITIVE, .primitive_tag = VAR_TYPE_INT}
-#define FLOAT_MACRO_TYPE (Type){.kind = KIND_PRIMITIVE, .primitive_tag = VAR_TYPE_FLOAT}
-#define BOOL_MACRO_TYPE (Type){.kind = KIND_PRIMITIVE, .primitive_tag = VAR_TYPE_BOOL}
-#define STRING_MACRO_TYPE (Type){.kind = KIND_PRIMITIVE, .primitive_tag = VAR_TYPE_STRING}
-#define VOID_MACRO_TYPE (Type){.kind = KIND_PRIMITIVE, .primitive_tag = VAR_TYPE_VOID}
-#define GENERIC_MACRO_TYPE (Type){.kind = KIND_PRIMITIVE, .primitive_tag = VAR_TYPE_GENERIC}
-#define ANY_MACRO_TYPE (Type){.kind = KIND_ANY}
-
-#define init_symbols(ptr_name) \
-    va_list args; \
-    va_start(args, ptr_name); \
-    Arena* arena = va_arg(args, Arena*); \
-    SymbolsManager* manager = (SymbolsManager*) ptr_name 
-
-#define end_symbols(name) \
-    va_end(args); \
-    return name
-
-#define var_fetch(name) \
-    Variable name = { \
-        .storage = *getAttributeIdentifier(manager, #name, "value"), \
-        .vtype = *((Type*) (getAttributeIdentifier(manager, #name, "type")->value_ptr)) \
-    }
-
-#define decl_return(name) EvalPass* name = NULL
-#define init_return(name) name = arena_get(arena, sizeof(EvalPass))
-#define set_return(name, var) \
-    _Static_assert(_Generic((var), Variable: 1, default: 0), "set_return requires a Variable"); \
-    *name = (EvalPass) { \
-        .tag = SIGNAL_TYPE, \
-        .as_signal = (Signal){.signal = SIGNAL_RETURN, .variable = var} \
-    }
-
-#define local_storage_get(arena_size) arena_get(arena, arena_size)
-
-#define var_is_prim(name) ((name).vtype.kind == KIND_PRIMITIVE)
-#define var_is_ptr(name) ((name).vtype.kind == KIND_POINTER)
-#define var_is_arr(name) ((name).vtype.kind == KIND_ARRAY)
-
-#define prim_type(name) ((name).vtype.primitive_tag)
-#define arr_type(name) ((name).vtype.array.elem_type)
-
-#define arr_size(name) ((name).vtype.array.sizes)
-#define arr_ndims(name) ((name).vtype.array.ndims)
-
-#define prim_int(name) ((name).storage.value_int)
-#define prim_float(name) ((name).storage.value_float)
-#define prim_bool(name) ((name).storage.value_bool)
-#define prim_str(name) ((name).storage.value_string)
-
-#define make_int(name, value) \
-    _Static_assert(_Generic((value), int: 1, default: 0), "make_int requires an int"); \
-    Variable name = (Variable) { \
-        .vtype = INT_MACRO_TYPE, \
-        .storage = (VValue){.vv_tag = VV_INT, .value_int = value} \
-    }
-
-#define make_float(name, value) \
-    _Static_assert(_Generic((value), float: 1, default: 0), "make_float requires a float"); \
-    Variable name = (Variable) { \
-        .vtype = FLOAT_MACRO_TYPE, \
-        .storage = (VValue){.vv_tag = VV_FLOAT, .value_float = value} \
-    }
-
-#define make_string(name, value) \
-    _Static_assert(_Generic((value), char*: 1, default: 0), "make_string requires a char*"); \
-    Variable name = (Variable) { \
-        .vtype = STRING_MACRO_TYPE, \
-        .storage = (VValue){.vv_tag = VV_STRING, .value_string = value} \
-    }
-
-#define EPSILON_FLOAT_COMP 0.0001f
-
-#define MAX_INPUT_BUILTIN 256
-
-typedef enum {
-    LOP_EQ,
-    LOP_GTE,
-    LOP_LTE,
-    LOP_GT,
-    LOP_LT,
-} LopTag;
 
 void print_vvalue(VValue* v) {
     if (!v) { printf("(null)"); return; }
@@ -885,6 +803,36 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     action = eval_arithmetic(left_expr, right_expr, '/');
                     break;
                 }
+                case INVERSE: {
+                    // evaluate left / evaluate right
+                    // check div by zero
+                    ASTNode* expr_node = node->storage.node->left_child;
+                    EvalPass expr_p = evaluate(manager, expr_node, current_arena);
+                    EvalPass expr = refactor_access_to_var(manager, expr_p, true);
+
+                    assert(expr.tag == VARIABLE_TYPE);
+                    assert(expr.as_variable.vtype.kind == KIND_PRIMITIVE);
+
+                    TypeTag expr_t = expr.as_variable.vtype.primitive_tag;
+                    assert(expr_t == VAR_TYPE_INT || expr_t == VAR_TYPE_FLOAT);
+                    
+                    float ef = (expr_t == VAR_TYPE_FLOAT) ? expr.as_variable.storage.value_float  : (float)expr.as_variable.storage.value_int;
+
+                    action.tag = VARIABLE_TYPE;
+                    
+                    if(expr_t == VAR_TYPE_INT){
+                        action.as_variable.vtype = INT_MACRO_TYPE;
+                        action.as_variable.storage = (VValue){ .vv_tag = VV_INT, .value_int = (int) -ef};
+                    }
+                    else if(expr_t == VAR_TYPE_FLOAT){
+                        action.as_variable.vtype = FLOAT_MACRO_TYPE;
+                        action.as_variable.storage = (VValue){ .vv_tag = VV_FLOAT, .value_float = -ef};
+                    }
+                    else{
+                        assert(false);
+                    }
+                    break;
+                }
                 case LOGICAND : {
                     ASTNode* left_expr_node = node->storage.node->left_child;
                     ASTNode* right_expr_node = left_expr_node->sibling;
@@ -990,13 +938,19 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
                     Arena* local_inner_arena = arena_create(LOCAL_ARENA_SIZE);
 
                     for (int i = 0; i < params->amount; i++) {
-                        // type check each argument against parameter
-                        assert(type_equals(args.as_args.list[i].argtype, params->list[i].argtype));
-
                         char* param_name = params->list[i].name;
                         initializeIdentifier(manager, param_name);
 
-                        // there needs to be a type modify for arguments, i have not tested that
+
+                        // This should set up types correctly
+                        type_modify(&params->list[i].argtype, args.as_args.list[i].argtype);
+
+                        //print_type(args.as_args.list[i].argtype);
+                        //print_type(params->list[i].argtype);
+
+                        // type check each argument against parameter
+                        assert(type_equals(args.as_args.list[i].argtype, params->list[i].argtype));
+
                         Type* type_store = (Type*) arena_get(local_inner_arena, sizeof(Type));
                         *type_store = args.as_args.list[i].argtype;
 
@@ -1411,285 +1365,7 @@ EvalPass evaluate(SymbolsManager* manager, ASTNode* node, Arena* current_arena){
     return action;
 }
 
-int print_primitive(Variable var_print, bool only_length){
-    switch (prim_type(var_print)) {
-        case VAR_TYPE_INT:
-            if(only_length){
-                return snprintf(NULL, 0, "%d\n", prim_int(var_print));
-            }
-            else{
-                return printf("%d\n", prim_int(var_print));
-            }
-            
-        case VAR_TYPE_FLOAT:
-            if(only_length){
-                return snprintf(NULL, 0, "%.2f\n", prim_float(var_print));
-            }
-            else{
-                return printf("%.2f\n", prim_float(var_print));
-            }
-        case VAR_TYPE_BOOL:
-            if(only_length){
-                return snprintf(NULL, 0, "%s\n", prim_bool(var_print) ? "true" : "false");
-            }
-            else{
-                return printf("%s\n", prim_bool(var_print) ? "true" : "false");
-            } 
-        case VAR_TYPE_STRING:
-            if(only_length){
-                return snprintf(NULL, 0, "%s\n", prim_str(var_print) ? prim_str(var_print) : "null");
-            }
-            else{
-                return printf("%s\n", prim_str(var_print) ? prim_str(var_print) : "null");
-            }
-        default:
-            printf("Unsuported type for print function %d\n", prim_type(var_print));
-            assert(false);
-            break;
-    }
-}
-
-void* print_execute(void* manager_void, ...){
-    init_symbols(manager_void);
-    var_fetch(generic_print);
-
-    decl_return(int_pass);
-    
-    if(var_is_prim(generic_print)){
-        print_primitive(generic_print, false);
-    }
-    else if(var_is_ptr(generic_print)){
-        assert(false);
-    }
-    else if(var_is_arr(generic_print)){
-        //int* sizes = arr_size(generic_print);
-        //int ndims = arr_ndims(generic_print);
-
-        assert(false);
-    }
-    else{
-        assert(false);
-    }
-
-    end_symbols(int_pass);
-}
-
-void* to_int_execute(void* manager_void, ...){
-    init_symbols(manager_void);
-    var_fetch(unconverted);
-
-    assert(var_is_prim(unconverted));
-
-    decl_return(int_pass);
-    init_return(int_pass);
-
-    switch (prim_type(unconverted)) {
-        case VAR_TYPE_INT: {
-            set_return(int_pass, unconverted);
-            break;
-        }
-        case VAR_TYPE_FLOAT: {
-            int int_value = (int) prim_float(unconverted);
-            make_int(float_to_int, int_value);
-            set_return(int_pass, float_to_int);
-            break;
-        }
-        case VAR_TYPE_BOOL: {
-            int int_value = (int) prim_bool(unconverted);
-            make_int(bool_to_int, int_value);
-            set_return(int_pass, bool_to_int);
-            break;
-        }
-        case VAR_TYPE_STRING: {
-            char* str_value = prim_str(unconverted);
-            char* endptr;
-            int int_value = (int) strtol(str_value, &endptr, 10);
-
-            if (endptr == str_value || *endptr != '\0') {
-                printf("Cannot convert string \"%s\" to int\n", str_value);
-                assert(false);
-            }
-
-            make_int(string_to_int, int_value);
-            set_return(int_pass, string_to_int);
-            break;
-        }
-        default: {
-            printf("Unsuported type %d for int conversion\n", prim_type(unconverted));
-            assert(false);
-            break;
-        }
-    }
-
-    end_symbols(int_pass);
-}
-
-void* to_float_execute(void* manager_void, ...){
-    init_symbols(manager_void);
-    var_fetch(unconverted);
-
-    assert(var_is_prim(unconverted));
-
-    decl_return(float_pass);
-    init_return(float_pass);
-
-    switch (prim_type(unconverted)) {
-        case VAR_TYPE_FLOAT: {
-            set_return(float_pass, unconverted);
-            break;
-        }
-        case VAR_TYPE_INT: {
-            float float_value = (float) prim_int(unconverted);
-            make_float(int_to_float, float_value);
-            set_return(float_pass, int_to_float);
-            break;
-        }
-        case VAR_TYPE_BOOL: {
-            float float_value = (float) prim_bool(unconverted);
-            make_float(bool_to_float, float_value);
-            set_return(float_pass, bool_to_float);
-            break;
-        }
-        case VAR_TYPE_STRING: {
-            char* str_value = prim_str(unconverted);
-            char* endptr;
-            float float_value = strtof(str_value, &endptr);
-
-            if (endptr == str_value || *endptr != '\0') {
-                printf("Cannot convert string \"%s\" to float\n", str_value);
-                assert(false);
-            }
-
-            make_float(string_to_float, float_value);
-            set_return(float_pass, string_to_float);
-            break;
-        }
-        default: {
-            printf("Unsuported type %d for float conversion\n", prim_type(unconverted));
-            assert(false);
-            break;
-        }
-    }
-
-    end_symbols(float_pass);
-}
-
-void* to_string_execute(void* manager_void, ...){
-    init_symbols(manager_void);
-    var_fetch(unconverted);
-
-    assert(var_is_prim(unconverted));
-
-    decl_return(string_pass);
-    init_return(string_pass);
-
-    switch (prim_type(unconverted)) {
-        case VAR_TYPE_FLOAT: {
-            int string_length = snprintf(NULL, 0, "%.7g", prim_float(unconverted)) + 1;
-            char* string_value = local_storage_get(string_length*sizeof(char));
-            snprintf(string_value, string_length, "%.7g", prim_float(unconverted));
-            make_string(float_to_string, string_value);
-            set_return(string_pass, float_to_string);
-            break;
-        }
-        case VAR_TYPE_INT: {
-            int string_length = snprintf(NULL, 0, "%d", prim_int(unconverted)) + 1;
-            char* string_value = local_storage_get(string_length*sizeof(char));
-            snprintf(string_value, string_length, "%d", prim_int(unconverted));
-            make_string(int_to_string, string_value);
-            set_return(string_pass, int_to_string);
-            break;
-        }
-        case VAR_TYPE_BOOL: {
-            bool value_bool = prim_bool(unconverted);
-            char* string_value;
-            if(value_bool){
-                string_value = "true";
-            }
-            else{
-                string_value = "false";
-            }
-            make_string(bool_to_string, string_value);
-            set_return(string_pass, bool_to_string);
-            break;
-        }
-        case VAR_TYPE_STRING: {
-            set_return(string_pass, unconverted);
-            break;
-        }
-        default: {
-            printf("Unsuported type %d for float conversion\n", prim_type(unconverted));
-            assert(false);
-            break;
-        }
-    }
-
-    end_symbols(string_pass);
-}
-
-void* input_execute(void* manager_void, ...){
-    init_symbols(manager_void);
-
-    decl_return(read_pass);
-    init_return(read_pass);
-
-    char buffer[MAX_INPUT_BUILTIN];
-    fgets(buffer, sizeof(buffer), stdin);
-    buffer[strcspn(buffer, "\n")] = '\0';
-
-    int input_size = strnlen(buffer, MAX_INPUT_BUILTIN);
-
-    char* str_copy = local_storage_get((input_size+1) * sizeof(char));
-    strncpy(str_copy, buffer, input_size);
-
-    make_string(input_string, str_copy);
-    set_return(read_pass, input_string);
-
-    end_symbols(read_pass);
-}
-
-void print_define(SymbolsManager* manager){
-    Argument argument;
-    argument.mode = PARAMETER_MODE;
-    argument.name = "generic_print";
-    argument.argtype = GENERIC_MACRO_TYPE;
-
-    external_define(manager, "print", VOID_MACRO_TYPE, print_execute, 1, argument);
-}
-
-void to_int_define(SymbolsManager* manager){
-    Argument argument;
-    argument.mode = PARAMETER_MODE;
-    argument.name = "unconverted";
-    argument.argtype = GENERIC_MACRO_TYPE;
-
-    external_define(manager, "toint", INT_MACRO_TYPE, to_int_execute, 1, argument);
-}
-
-void to_float_define(SymbolsManager* manager){
-    Argument argument;
-    argument.mode = PARAMETER_MODE;
-    argument.name = "unconverted";
-    argument.argtype = GENERIC_MACRO_TYPE;
-
-    external_define(manager, "tofloat", FLOAT_MACRO_TYPE, to_float_execute, 1, argument);
-}
-
-void to_string_define(SymbolsManager* manager){
-    Argument argument;
-    argument.mode = PARAMETER_MODE;
-    argument.name = "unconverted";
-    argument.argtype = GENERIC_MACRO_TYPE;
-
-    external_define(manager, "tostr", STRING_MACRO_TYPE, to_string_execute, 1, argument);
-}
-
-void input_define(SymbolsManager* manager){
-    external_define(manager, "read", STRING_MACRO_TYPE, input_execute, 0);
-}
-
 void external_define(SymbolsManager* manager, char* func_name, Type return_type, void* (*external_func)(void*, ...), int args_amount, ...){
-
     va_list args;
 
     va_start(args, args_amount);
@@ -1734,14 +1410,27 @@ SymbolsManager* create_symbols_manager(bool production){
     return manager;
 }
 
-void calculate_tree(TreeManager tree_manager, bool production){
+void calculate_tree(TreeManager tree_manager, bool production, int amount_builtin, ...){
     SymbolsManager* symbols_manager = create_symbols_manager(production);
-    print_define(symbols_manager);
-    input_define(symbols_manager);
 
-    to_int_define(symbols_manager);
-    to_float_define(symbols_manager);
-    to_string_define(symbols_manager);
+    va_list args;
+
+    va_start(args, amount_builtin);
+
+    if(amount_builtin > 0){
+        for (int i = 0; i < amount_builtin; i++){
+            typedef void (*BuiltinDefine)(SymbolsManager*);
+            BuiltinDefine built_in = va_arg(args, BuiltinDefine);
+            built_in(symbols_manager);
+        }
+    }
+
+    //print_define(symbols_manager);
+    //input_define(symbols_manager);
+
+    //to_int_define(symbols_manager);
+    //to_float_define(symbols_manager);
+    //to_string_define(symbols_manager);
 
     evaluate(symbols_manager, &tree_manager.root, symbols_manager->global_arena);
     destroyAST(tree_manager);
