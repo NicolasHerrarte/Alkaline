@@ -39,7 +39,7 @@ The goal is to make a programming language that strongly enforces the basics and
 | Heap memory and garbage collector | 7 |
 | First class functions and lambdas | 7 |
 | Views of structures | 7 |
-| Compilation version | 9 |
+| Compiled version | 9 |
 
 Any help is greatly appreciated.
 
