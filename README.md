@@ -258,7 +258,7 @@ int main(){
 Name /-> Reduction Rules /%%/ @command -$Arguments <ASTName> /;
 ```
 
-Every rule follows this structure: first the name of the subject of the reduction followed by `/->`, then the predicate of the reduction. This can include other nonterminal symbols or terminal symbols. These names must be added in the mapping with their respective categories. The symbol `/%%/` terminates the grammar section and introduces the AST command.
+Every rule follows this structure: first the name of the subject of the reduction followed by `/->`, then the predicate of the reduction. This can include other nonterminal symbols or terminal symbols. These names must be added in the mapping with their respective categories. The symbol `/%%/` terminates the grammar section and introduces the AST command. To avoid writing the same name repeatedly a convenience command can be used `/|` to indicate the use of the last recorded subject name.
 
 ### AST Commands
 
