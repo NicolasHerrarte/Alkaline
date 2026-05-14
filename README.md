@@ -41,6 +41,8 @@ The goal is to make a programming language that strongly enforces the basics and
 | Views of structures | 7 |
 | Compilation version | 9 |
 
+Any help is greatly appreciated.
+
 ## Showcase
 
 ### Fibonacci
